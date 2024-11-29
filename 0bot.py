@@ -176,7 +176,7 @@ def main(message):
     )
 
     # Start processing the cards asynchronously
-    with ThreadPoolExecutor(max_workers=2) as executor:  # Increase workers if needed
+    with ThreadPoolExecutor(max_workers=5) as executor:  # Increase workers if needed
         futures = [executor.submit(Tele, card) for card in cc]
         for future in as_completed(futures):
             ccx, result, ip = future.result()
